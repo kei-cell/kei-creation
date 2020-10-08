@@ -9,11 +9,13 @@ public class HelloController {
         String[] names = {"tuyano","hanako","taro","sachiko","ichiro"};
         String[] mails = {"syoda@tuuyano.com","hanako@flower","taro@yamada","sachiko@happy","ichiro@baseball"};
 
-        @RequestMapping("/")
-        public ModelAndView index(ModelAndView mav){
+        @RequestMapping("/{id}")
+        public ModelAndView index(@PathVariable int id, ModelAndView mav){
             mav.setViewName("index");
-            mav.addObject("msg","message 1<hr/>message 2 <br/> message 3");
-
+            mav.addObject("id", id);
+            mav.addObject("check",id % 2 == 0);
+            mav.addObject("trueVal","Even number!");
+            mav.addObject("falseVal","Odd number...");
             return mav;
 
         }
