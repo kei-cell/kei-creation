@@ -3,19 +3,29 @@ package com.example.demo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.tags.EditorAwareTag;
+
+import java.util.ArrayList;
 
 @RestController
 public class HelloController {
         String[] names = {"tuyano","hanako","taro","sachiko","ichiro"};
         String[] mails = {"syoda@tuuyano.com","hanako@flower","taro@yamada","sachiko@happy","ichiro@baseball"};
 
-        @RequestMapping("/{month}")
-        public ModelAndView index(@PathVariable int month, ModelAndView mav) {
+        @RequestMapping("/{num}")
+        public ModelAndView index(@PathVariable int num,ModelAndView mav) {
             mav.setViewName("index");
-            int m = Math.abs(month) % 12;
-            m = m == 0 ? 12 : m;
-            mav.addObject("month",m);
-            mav.addObject("check",Math.floor(m / 3));
+            mav.addObject("num",num);
+            if(num >= 0){
+                mav.addObject("check","num >= data.size() ? 0 : num");
+            }else{
+                mav.addObject("check","num <= data.size() * -1 ? 0 : num * -1");
+            }
+            ArrayList<DataObject> data = new ArrayList<DataObject>();
+            data.add(new DataObject(0,"taro@yamada","taro@yamada"));
+            data.add(new DataObject(1,"hanako","hanako@yamada"));
+            data.add(new DataObject(2,"sachiko","sachiko@happy"));
+            mav.addObject("data", data);
             return mav;
         }
 }

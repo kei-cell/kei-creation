@@ -15,13 +15,11 @@
 </head>
     <body>
         <h1 th:text="#{content.title}">Hello page</h1>
-        <div th:switch="${check}">
-            <p th:case="0" th:text="|${month} - Winter|"></p>
-            <p th:case="1" th:text="|${month} - Spring|"></p>
-            <p th:case="2" th:text="|${month} - Summer|"></p>
-            <p th:case="3" th:text="|${month} - Autumn|"></p>
-            <p th:case="4" th:text="|${month} - Winter|"></p>
-            <p th:case="*">...?</p>
-        </div>
+        <p th:text="|expression[ ${check} ]|"></p>
+        <table th:object="${data.get(__${check}__)}">
+            <tr><th>ID</th><td th:text="*{id}"></td></tr>
+            <tr><th>NAME</th><td th:text="*{name}"></td></tr>
+            <tr><th>MAIL</th><td th:text="*{value}"></td></tr>
+        </table>
     </body>
 </html>
