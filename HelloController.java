@@ -12,14 +12,10 @@ public class HelloController {
         String[] names = {"tuyano","hanako","taro","sachiko","ichiro"};
         String[] mails = {"syoda@tuuyano.com","hanako@flower","taro@yamada","sachiko@happy","ichiro@baseball"};
 
-        @RequestMapping("/")
-        public ModelAndView index(ModelAndView mav) {
+        @RequestMapping("/{tax}")
+        public ModelAndView index(@PathVariable int tax,ModelAndView mav) {
             mav.setViewName("index");
-            ArrayList<DataObject> data = new ArrayList<DataObject>();
-            data.add(new DataObject(0,"taro","taro@yamada"));
-            data.add(new DataObject(1,"hanako","hanako@yamada"));
-            data.add(new DataObject(2,"sachiko","sachiko@happy"));
-            mav.addObject("data", data);
+            mav.addObject("tax",tax);
             return mav;
         }
 }
