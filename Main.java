@@ -18,10 +18,10 @@ public class Main {
         }
 
         int nameCheck = checkName(name);
-        if (nameCheck < 99){
+        if (nameCheck < 99)
             // チェックエラーとして処理終了
             return nameCheck;
-        }
+        
         int birthdayCheck = checkBirthday(birthday);
 
         if (birthdayCheck < 99){
@@ -195,4 +195,5 @@ public class Main {
 
 
 }
+index.html
 
